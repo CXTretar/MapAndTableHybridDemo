@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "MapTableSeparateController.h"
+#import "MapTableMergeController.h"
 
 @interface ViewController ()
 
@@ -19,6 +21,23 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+#pragma mark - 地图和列表分离操作样式
+
+- (IBAction)separateVC:(id)sender {
+    
+    MapTableSeparateController *vc = [MapTableSeparateController new];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+#pragma mark - 地图和列表合并操作样式
+
+- (IBAction)mergeVC:(id)sender {
+    
+    MapTableMergeController *vc = [MapTableMergeController new];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

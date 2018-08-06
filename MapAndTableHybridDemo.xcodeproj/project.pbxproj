@@ -15,6 +15,13 @@
 		DC3F57D52117432B0004BCAE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F57D42117432B0004BCAE /* main.m */; };
 		DC3F57DF2117432B0004BCAE /* MapAndTableHybridDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F57DE2117432B0004BCAE /* MapAndTableHybridDemoTests.m */; };
 		DC3F57EA2117432B0004BCAE /* MapAndTableHybridDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F57E92117432B0004BCAE /* MapAndTableHybridDemoUITests.m */; };
+		DC7D36842117F55F00CFE9FE /* MapTableSeparateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7D36832117F55F00CFE9FE /* MapTableSeparateController.m */; };
+		DC7D36872117F57A00CFE9FE /* MapTableMergeController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7D36862117F57A00CFE9FE /* MapTableMergeController.m */; };
+		DC7D368D2118486A00CFE9FE /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7D368C2118486A00CFE9FE /* BaseViewController.m */; };
+		DC7D369021184DF500CFE9FE /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7D368F21184DF500CFE9FE /* BaseTableView.m */; };
+		DC7D369321184ECC00CFE9FE /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7D369221184ECC00CFE9FE /* BaseTableViewCell.m */; };
+		DC7D36972118A17500CFE9FE /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7D36962118A17500CFE9FE /* UIImage+Color.m */; };
+		DC7D369D2118A30900CFE9FE /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7D369C2118A30900CFE9FE /* UIColor+HexColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +58,20 @@
 		DC3F57E52117432B0004BCAE /* MapAndTableHybridDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapAndTableHybridDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3F57E92117432B0004BCAE /* MapAndTableHybridDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapAndTableHybridDemoUITests.m; sourceTree = "<group>"; };
 		DC3F57EB2117432B0004BCAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC7D36822117F55F00CFE9FE /* MapTableSeparateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapTableSeparateController.h; sourceTree = "<group>"; };
+		DC7D36832117F55F00CFE9FE /* MapTableSeparateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapTableSeparateController.m; sourceTree = "<group>"; };
+		DC7D36852117F57A00CFE9FE /* MapTableMergeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapTableMergeController.h; sourceTree = "<group>"; };
+		DC7D36862117F57A00CFE9FE /* MapTableMergeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapTableMergeController.m; sourceTree = "<group>"; };
+		DC7D368B2118486A00CFE9FE /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		DC7D368C2118486A00CFE9FE /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		DC7D368E21184DF500CFE9FE /* BaseTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableView.h; sourceTree = "<group>"; };
+		DC7D368F21184DF500CFE9FE /* BaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
+		DC7D369121184ECC00CFE9FE /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		DC7D369221184ECC00CFE9FE /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		DC7D36952118A17500CFE9FE /* UIImage+Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		DC7D36962118A17500CFE9FE /* UIImage+Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		DC7D369B2118A30900CFE9FE /* UIColor+HexColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
+		DC7D369C2118A30900CFE9FE /* UIColor+HexColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +126,11 @@
 				DC3F57C62117432A0004BCAE /* AppDelegate.m */,
 				DC3F57C82117432A0004BCAE /* ViewController.h */,
 				DC3F57C92117432A0004BCAE /* ViewController.m */,
+				DC7D36942118A14B00CFE9FE /* Base */,
+				DC7D36822117F55F00CFE9FE /* MapTableSeparateController.h */,
+				DC7D36832117F55F00CFE9FE /* MapTableSeparateController.m */,
+				DC7D36852117F57A00CFE9FE /* MapTableMergeController.h */,
+				DC7D36862117F57A00CFE9FE /* MapTableMergeController.m */,
 				DC3F57CB2117432A0004BCAE /* Main.storyboard */,
 				DC3F57CE2117432B0004BCAE /* Assets.xcassets */,
 				DC3F57D02117432B0004BCAE /* LaunchScreen.storyboard */,
@@ -130,6 +156,23 @@
 				DC3F57EB2117432B0004BCAE /* Info.plist */,
 			);
 			path = MapAndTableHybridDemoUITests;
+			sourceTree = "<group>";
+		};
+		DC7D36942118A14B00CFE9FE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				DC7D368B2118486A00CFE9FE /* BaseViewController.h */,
+				DC7D368C2118486A00CFE9FE /* BaseViewController.m */,
+				DC7D368E21184DF500CFE9FE /* BaseTableView.h */,
+				DC7D368F21184DF500CFE9FE /* BaseTableView.m */,
+				DC7D369121184ECC00CFE9FE /* BaseTableViewCell.h */,
+				DC7D369221184ECC00CFE9FE /* BaseTableViewCell.m */,
+				DC7D36952118A17500CFE9FE /* UIImage+Color.h */,
+				DC7D36962118A17500CFE9FE /* UIImage+Color.m */,
+				DC7D369B2118A30900CFE9FE /* UIColor+HexColor.h */,
+				DC7D369C2118A30900CFE9FE /* UIColor+HexColor.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,8 +309,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC3F57CA2117432A0004BCAE /* ViewController.m in Sources */,
+				DC7D368D2118486A00CFE9FE /* BaseViewController.m in Sources */,
+				DC7D36872117F57A00CFE9FE /* MapTableMergeController.m in Sources */,
 				DC3F57D52117432B0004BCAE /* main.m in Sources */,
+				DC7D369321184ECC00CFE9FE /* BaseTableViewCell.m in Sources */,
+				DC7D36842117F55F00CFE9FE /* MapTableSeparateController.m in Sources */,
+				DC7D36972118A17500CFE9FE /* UIImage+Color.m in Sources */,
+				DC7D369D2118A30900CFE9FE /* UIColor+HexColor.m in Sources */,
 				DC3F57C72117432A0004BCAE /* AppDelegate.m in Sources */,
+				DC7D369021184DF500CFE9FE /* BaseTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +488,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MapAndTableHybridDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tretar.MapAndTableHybridDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -451,6 +502,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MapAndTableHybridDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tretar.MapAndTableHybridDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
