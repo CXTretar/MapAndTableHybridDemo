@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Root Navigation Controller-->
         <scene sceneID="C6k-iv-Izo">
             <objects>
-                <navigationController id="ddI-st-n5B" sceneMemberID="viewController">
+                <navigationController id="ddI-st-n5B" customClass="RTRootNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="l2p-oo-XEq">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -44,7 +44,7 @@
                                     <constraint firstAttribute="width" constant="200" id="syR-LK-4Rd"/>
                                     <constraint firstAttribute="height" constant="40" id="tE3-1n-AFw"/>
                                 </constraints>
-                                <state key="normal" title="地图和列表分离操作样式">
+                                <state key="normal" title="地图和列表手势分离效果">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -54,7 +54,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oau-iT-3im">
                                 <rect key="frame" x="87.5" y="317" width="200" height="40"/>
                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="地图和列表合并操作样式"/>
+                                <state key="normal" title="地图和列表手势共存效果"/>
                                 <connections>
                                     <action selector="mergeVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PDf-Cb-V1B"/>
                                 </connections>

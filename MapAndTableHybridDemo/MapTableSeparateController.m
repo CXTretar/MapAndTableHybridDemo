@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.isSeparate = YES;
+    self.titleLabel.text = @"MapTableSeparateController";
     // Do any additional setup after loading the view.
 }
 

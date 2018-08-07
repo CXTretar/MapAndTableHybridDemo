@@ -33,6 +33,16 @@
 
 - (void)setupUI {
     self.backgroundColor = [UIColor clearColor];
+    
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(15, 0, kScreenWidth - 30, CellHeight)];
+    bgView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:bgView];
+    
+    UIImageView *bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CellHeight, CellHeight)];
+    [bgView addSubview:bgImage];
+    bgImage.center = bgView.center;
+    self.bgImage = bgImage;
+    
 }
 
 @end

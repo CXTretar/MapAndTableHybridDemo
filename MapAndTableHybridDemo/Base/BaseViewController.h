@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
+#import "BaseTableView.h"
 
 @interface BaseViewController : UIViewController
 
 @property (nonatomic, weak) MKMapView *mapView;
-@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) BaseTableView *tableView;
+@property (nonatomic, weak) UILabel *titleLabel;
 
 @end

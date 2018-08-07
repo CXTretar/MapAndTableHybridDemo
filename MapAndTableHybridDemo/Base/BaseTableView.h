@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ClickHeadBlock)(void);
+
 @interface BaseTableView : UITableView
 
+@property (nonatomic, copy) ClickHeadBlock clickHeadBlock;
+
 @property (nonatomic, assign) BOOL isSeparate;
+
+- (void)scrollToTopAnimated:(BOOL)animated;
 
 @end

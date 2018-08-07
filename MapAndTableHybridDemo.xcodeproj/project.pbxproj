@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC3ED2CF2119317F0003B154 /* UIViewController+RTRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3ED2CB2119317F0003B154 /* UIViewController+RTRootNavigationController.m */; };
+		DC3ED2D02119317F0003B154 /* RTRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3ED2CE2119317F0003B154 /* RTRootNavigationController.m */; };
 		DC3F57C72117432A0004BCAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F57C62117432A0004BCAE /* AppDelegate.m */; };
 		DC3F57CA2117432A0004BCAE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F57C92117432A0004BCAE /* ViewController.m */; };
 		DC3F57CD2117432A0004BCAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC3F57CB2117432A0004BCAE /* Main.storyboard */; };
@@ -42,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC3ED2CB2119317F0003B154 /* UIViewController+RTRootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RTRootNavigationController.m"; sourceTree = "<group>"; };
+		DC3ED2CC2119317F0003B154 /* RTRootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRootNavigationController.h; sourceTree = "<group>"; };
+		DC3ED2CD2119317F0003B154 /* UIViewController+RTRootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RTRootNavigationController.h"; sourceTree = "<group>"; };
+		DC3ED2CE2119317F0003B154 /* RTRootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRootNavigationController.m; sourceTree = "<group>"; };
 		DC3F57C22117432A0004BCAE /* MapAndTableHybridDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapAndTableHybridDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3F57C52117432A0004BCAE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DC3F57C62117432A0004BCAE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 		DC7D36962118A17500CFE9FE /* UIImage+Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		DC7D369B2118A30900CFE9FE /* UIColor+HexColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
 		DC7D369C2118A30900CFE9FE /* UIColor+HexColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
+		DC7D369E2118B01900CFE9FE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +106,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC3ED2CA2119317F0003B154 /* RTRootNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				DC3ED2CD2119317F0003B154 /* UIViewController+RTRootNavigationController.h */,
+				DC3ED2CB2119317F0003B154 /* UIViewController+RTRootNavigationController.m */,
+				DC3ED2CC2119317F0003B154 /* RTRootNavigationController.h */,
+				DC3ED2CE2119317F0003B154 /* RTRootNavigationController.m */,
+			);
+			path = RTRootNavigationController;
+			sourceTree = "<group>";
+		};
 		DC3F57B92117432A0004BCAE = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +149,7 @@
 				DC7D36832117F55F00CFE9FE /* MapTableSeparateController.m */,
 				DC7D36852117F57A00CFE9FE /* MapTableMergeController.h */,
 				DC7D36862117F57A00CFE9FE /* MapTableMergeController.m */,
+				DC7D369E2118B01900CFE9FE /* PrefixHeader.pch */,
 				DC3F57CB2117432A0004BCAE /* Main.storyboard */,
 				DC3F57CE2117432B0004BCAE /* Assets.xcassets */,
 				DC3F57D02117432B0004BCAE /* LaunchScreen.storyboard */,
@@ -161,6 +180,7 @@
 		DC7D36942118A14B00CFE9FE /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				DC3ED2CA2119317F0003B154 /* RTRootNavigationController */,
 				DC7D368B2118486A00CFE9FE /* BaseViewController.h */,
 				DC7D368C2118486A00CFE9FE /* BaseViewController.m */,
 				DC7D368E21184DF500CFE9FE /* BaseTableView.h */,
@@ -309,9 +329,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC3F57CA2117432A0004BCAE /* ViewController.m in Sources */,
+				DC3ED2CF2119317F0003B154 /* UIViewController+RTRootNavigationController.m in Sources */,
 				DC7D368D2118486A00CFE9FE /* BaseViewController.m in Sources */,
 				DC7D36872117F57A00CFE9FE /* MapTableMergeController.m in Sources */,
 				DC3F57D52117432B0004BCAE /* main.m in Sources */,
+				DC3ED2D02119317F0003B154 /* RTRootNavigationController.m in Sources */,
 				DC7D369321184ECC00CFE9FE /* BaseTableViewCell.m in Sources */,
 				DC7D36842117F55F00CFE9FE /* MapTableSeparateController.m in Sources */,
 				DC7D36972118A17500CFE9FE /* UIImage+Color.m in Sources */,
@@ -487,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = MapAndTableHybridDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -501,6 +524,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = MapAndTableHybridDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

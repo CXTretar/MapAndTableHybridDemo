@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#define CellHeight 200
+
 @interface BaseTableViewCell : UITableViewCell
 
 + (id)createCellWithTableView:(UITableView *)tableView;
+
+@property (nonatomic, weak) UIImageView *bgImage;
 
 @end

@@ -11,16 +11,25 @@
 @implementation BaseTableView
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
-    
-    NSLog(@"point=%@",NSStringFromCGPoint(point));
-    
-    NSLog(@"y=%f",self.contentOffset.y);
-//
     if (point.y < 0) {
-        return nil;
+        if (_isSeparate) {
+            if (self.clickHeadBlock) {
+                self.clickHeadBlock();
+            }
+        }else {
+            return nil;
+        }
     }
-//
     return  [super hitTest:point withEvent:event];
 }
+
+- (void)scrollToTopAnimated:(BOOL)animated {
+    
+    CGPoint off = self.contentOffset;
+    off.y = 0 - self.contentInset.top - kTopHeight;
+    
+    [self setContentOffset:off animated:animated];
+}
+
 
 @end

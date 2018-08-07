@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.isSeparate = NO;
+    self.titleLabel.text = @"MapTableMergeController";
     // Do any additional setup after loading the view.
 }
 

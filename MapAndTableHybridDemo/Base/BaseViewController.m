@@ -7,41 +7,64 @@
 //
 
 #import "BaseViewController.h"
-#import "BaseTableView.h"
 #import "UIImage+Color.h"
 #import "UIColor+HexColor.h"
+#import "BaseTableViewCell.h"
 
-/*
- * 适配 iPhone X
- * 替换 64px →kTopHeight
- * 替换 49px →kTabBarHeight
- */
-#define kBottomHeight (iphoneX ? 34 : 0)
-#define kStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
-#define kNavBarHeight 44.0
-#define kTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49)
-#define kTopHeight (kStatusBarHeight + kNavBarHeight)
 
-@interface BaseViewController ()<MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
+#define TableTopInset (kScreenHeight - kTopHeight - CellHeight)
+
+typedef NS_ENUM(NSUInteger, BtnType) {
+    BackBtnType  = 1000, // 返回按钮
+    CloseBtnType,        // 关闭按钮
+};
+
+@interface BaseViewController ()<MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) UIButton *backBtn;
+@property (nonatomic, copy) NSArray *imageArray;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, assign) BOOL isFirstPositionFound;
 
 @end
 
 @implementation BaseViewController
 
+
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        //设置定位属性
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        //设置定位更行距离  米
+        _locationManager.distanceFilter = 10.0;
+        _locationManager.delegate = self;
+    }
+    return _locationManager;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.imageArray = @[@"zj01",@"zj02",@"zj03"].copy;
+    
     [self setupNavgation];
     [self setupUI];
+    
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (kCLAuthorizationStatusNotDetermined == status) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
     // Do any additional setup after loading the view.
 }
 
 - (void)setupNavgation {
     UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    backBtn.tag = BackBtnType;
     backBtn.alpha = 0.8;
     [backBtn setImage:[UIImage imageNamed:@"btn_map_back"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     self.backBtn = backBtn;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
@@ -51,31 +74,29 @@
     // 取消掉底部的那根线
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     //设置标题
-    UILabel *title = [[UILabel alloc] init];
-    title.font = [UIFont systemFontOfSize:16];
-    [title sizeToFit];
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.font = [UIFont systemFontOfSize:18];
+    titleLabel.text = @"MapTableSeparateController";
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [titleLabel sizeToFit];
     // 开始的时候看不见，所以alpha值为0
-    title.textColor = [UIColor colorWithWhite:0 alpha:0];
-    self.navigationItem.titleView = title;
+    titleLabel.textColor = [UIColor colorWithWhite:0 alpha:0];
+    self.titleLabel = titleLabel;
+    self.navigationItem.titleView = titleLabel;
 }
 
 - (void)setupUI {
     self.view.backgroundColor = [UIColor whiteColor];
     // 地图部分界面
-    MKMapView *mapView = [[MKMapView alloc]initWithFrame:self.view.bounds];
+    MKMapView *mapView = [[MKMapView alloc]initWithFrame:CGRectMake(0, - CellHeight, kScreenWidth, kScreenHeight + CellHeight)];
     mapView.delegate = self;
     mapView.mapType = MKMapTypeStandard;
     mapView.showsUserLocation = YES;
-    mapView.userTrackingMode = MKUserTrackingModeFollow;
     self.mapView = mapView;
     [self.view addSubview:mapView];
     
-    
     // 表格部分
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-    BaseTableView *tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, width, height) style:UITableViewStylePlain];
+    BaseTableView *tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
     tableView.backgroundColor = [UIColor clearColor];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -85,30 +106,69 @@
     tableView.layer.shadowOffset = CGSizeMake(0, 3);
     tableView.layer.shadowRadius = 4.0f;
     tableView.layer.shadowOpacity = 0.4f;
-    tableView.contentInset = UIEdgeInsetsMake(450, 0, 0, 0);
+    tableView.contentInset = UIEdgeInsetsMake(TableTopInset, 0, 0, 0);
+    tableView.rowHeight = CellHeight + 10;
+    
+    __weak typeof(self) weakSelf = self;
+    tableView.clickHeadBlock = ^{
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            weakSelf.tableView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+            
+        } completion:^(BOOL finished) {
+
+            [weakSelf.backBtn setImage:[UIImage imageNamed:@"btn_map_close"] forState:UIControlStateNormal];
+            weakSelf.backBtn.tag = CloseBtnType;
+            [weakSelf.tableView scrollToTopAnimated:NO];
+            
+        }];
+    };
     
     self.tableView = tableView;
     [self.view addSubview:tableView];
     
 }
 
+#pragma mark - MKMapViewDelegate
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    if (userLocation && !_isFirstPositionFound) {
+        _isFirstPositionFound = YES;
+        MKCoordinateSpan theSpan;
+        //地图的范围 越小越精确
+        theSpan.latitudeDelta = 0.05;
+        theSpan.longitudeDelta = 0.05;
+        MKCoordinateRegion theRegion;
+        theRegion.center = userLocation.coordinate;
+        theRegion.span = theSpan;
+        [mapView setRegion:theRegion];
+    }
+}
+
+#pragma mark - UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    
+    return self.imageArray.count;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [UITableViewCell new];
+    
+    BaseTableViewCell *cell = [BaseTableViewCell createCellWithTableView:tableView];
+    cell.bgImage.image = [UIImage imageNamed:self.imageArray[indexPath.row]];
+    return cell;
+    
 }
 
-#pragma mark - scrollview delegate
+#pragma mark - Scrollview Delegate
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([scrollView isEqual:self.tableView]) {
-        
-        //        [self.view endEditing:YES];
-        //        CGFloat offset =  scrollView.contentOffset.y - _tableViewHeaderH + kTopHeight * 2;
         //根据透明度来生成图片
         //找最大值/
-        CGFloat alpha = scrollView.contentOffset.y / (450);   // (200 - 64) / 136.0f
+        NSLog(@"alpha %f", (TableTopInset + scrollView.contentOffset.y + kTopHeight));
+        CGFloat alpha = (TableTopInset + scrollView.contentOffset.y + kTopHeight) / (TableTopInset);   // (200 - 64) / 136.0f
         if (alpha >= 1) {
             alpha = 0.99;
         }
@@ -134,11 +194,55 @@
     }
 }
 
+#pragma mark - Private methods
 
-- (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)back:(UIButton *)sender {
+    if (sender.tag == BackBtnType) {
+
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if (sender.tag == CloseBtnType) {
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            self.tableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+            
+        } completion:^(BOOL finished) {
+           
+            [self.backBtn setImage:[UIImage imageNamed:@"btn_map_back"] forState:UIControlStateNormal];
+            self.backBtn.tag = BackBtnType;
+        }];
+    }
+   
 }
 
+#pragma mark - 去除地图缓存
+
+//  切换地图类型, 减少内存占用
+- (void)applyMapViewMemoryHotFix {
+    switch (self.mapView.mapType) {
+        case MKMapTypeHybrid:
+            self.mapView.mapType = MKMapTypeStandard;
+            break;
+        case MKMapTypeStandard:
+            self.mapView.mapType = MKMapTypeHybrid;
+            break;
+        default:
+            break;
+    }
+    self.mapView.mapType = MKMapTypeStandard;
+}
+
+- (void)dealloc {
+    [self applyMapViewMemoryHotFix];
+    _mapView.mapType = MKMapTypeStandard;
+    _mapView.showsUserLocation = NO;
+    [_mapView.layer removeAllAnimations];
+    [_mapView removeAnnotations:_mapView.annotations];
+    [_mapView removeOverlays:_mapView.overlays];
+    [_mapView removeFromSuperview];
+    _mapView.delegate = nil;
+    _mapView = nil;
+    
+}
 
 
 @end

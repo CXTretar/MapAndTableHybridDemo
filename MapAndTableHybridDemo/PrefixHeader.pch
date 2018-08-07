@@ -1,0 +1,28 @@
+//
+//  PrefixHeader.pch
+//  MapAndTableHybridDemo
+//
+//  Created by Felix on 2018/8/7.
+//  Copyright © 2018年 CXTretar. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+#import "RTRootNavigationController.h"
+
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+/*
+ * 适配 iPhone X
+ * 替换 64px →kTopHeight
+ * 替换 49px →kTabBarHeight
+ */
+#define kBottomHeight (iphoneX ? 34 : 0)
+#define kStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+#define kNavBarHeight 44.0
+#define kTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49)
+#define kTopHeight (kStatusBarHeight + kNavBarHeight)
+
+#endif /* PrefixHeader_pch */
