@@ -12,7 +12,7 @@
 #import "BaseTableViewCell.h"
 
 
-#define TableTopInset (kScreenHeight - kTopHeight - CellHeight)
+#define TableTopInset (kScreenHeight - CellHeight)
 
 typedef NS_ENUM(NSUInteger, BtnType) {
     BackBtnType  = 1000, // 返回按钮
@@ -127,6 +127,13 @@ typedef NS_ENUM(NSUInteger, BtnType) {
     self.tableView = tableView;
     [self.view addSubview:tableView];
     
+    // 适配iOS 11
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
 }
 
 #pragma mark - MKMapViewDelegate
@@ -156,7 +163,7 @@ typedef NS_ENUM(NSUInteger, BtnType) {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     BaseTableViewCell *cell = [BaseTableViewCell createCellWithTableView:tableView];
-    cell.bgImage.image = [UIImage imageNamed:self.imageArray[indexPath.row]];
+//    cell.bgImage.image = [UIImage imageNamed:self.imageArray[indexPath.row]];
     return cell;
     
 }
@@ -167,8 +174,8 @@ typedef NS_ENUM(NSUInteger, BtnType) {
     if ([scrollView isEqual:self.tableView]) {
         //根据透明度来生成图片
         //找最大值/
-        NSLog(@"alpha %f", (TableTopInset + scrollView.contentOffset.y + kTopHeight));
-        CGFloat alpha = (TableTopInset + scrollView.contentOffset.y + kTopHeight) / (TableTopInset);   // (200 - 64) / 136.0f
+        NSLog(@"alpha %f", (TableTopInset + scrollView.contentOffset.y));
+        CGFloat alpha = (TableTopInset + scrollView.contentOffset.y) / (TableTopInset);   // (200 - 64) / 136.0f
         if (alpha >= 1) {
             alpha = 0.99;
         }
